@@ -40,7 +40,7 @@ private:
 	int depth = 0;
 	Node* root;
 
-	void nodeSplit(Node* curr) {
+	void insNodeSplit(Node* curr) {
 		if (curr->size < this->deg) {
 			return;
 		}
@@ -147,13 +147,23 @@ private:
 			newSiblingNode->parent = newRootNode;
 		}
 
-		return nodeSplit(curr->parent);
+		return this->insNodeSplit(curr->parent);
 	}
 
 public:
 	BTree(int deg) : deg(deg){};
 
-	void del() {}
+	void del(int key) {
+		pair<Node*, int> curr = this->search(key);
+
+		if (curr.second == -1) { // Key not found
+			return;
+		}
+
+		
+
+		return;
+	}
 
 	void ins(int key, string val) {
 		if (!this->root) {
@@ -186,7 +196,7 @@ public:
 
 		// Split node
 
-		this->nodeSplit(curr);
+		this->insNodeSplit(curr);
 
 		return;
 	}
